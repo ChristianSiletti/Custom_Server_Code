@@ -71,7 +71,10 @@ def authorize():
                 f"<button type='submit' name='deny' value='1'>Deny</button>"
                 f"</(form>")
     else:  # POST
-        grant_user = current_user if 'approve' in request.form else None
+        if 'approve' in request.form:
+            grant_user = current_user
+        else:
+            return redirect(request.referrer)
         return auth_server.create_authorization_response(grant_user=grant_user)
 
 
