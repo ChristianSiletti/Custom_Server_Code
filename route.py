@@ -68,14 +68,14 @@ def authorize():
                 f"<img src='{grant.client.logo_uri}' width='200px' alt='Client Logo'/><br/>"
                 f"<h3>{grant.client.client_name} ({grant.client.client_id}) want to access your resources</h3>"
                 f"<button type='submit' name='approve' value='1'>Approve</button>"
-                f"<button type='submit' name='deny' value='1'>Deny</button>"
+                f"<button type='submit' name='deny' value='1' onclick='history.back(-2)'>Deny</button>"
                 f"</(form>")
     else:  # POST
         if 'approve' in request.form:
             grant_user = current_user
+            return auth_server.create_authorization_response(grant_user=grant_user)
         else:
-            return redirect(request.referrer)
-        return auth_server.create_authorization_response(grant_user=grant_user)
+            return redirect(request.referrer or '/')
 
 
 @bp.route('/oauth/token', methods=['POST'])
