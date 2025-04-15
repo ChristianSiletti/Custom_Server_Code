@@ -75,7 +75,7 @@ def authorize():
             grant_user = current_user
             return auth_server.create_authorization_response(grant_user=grant_user)
         else:
-            return redirect(request.referrer or '/')
+            return redirect('/')
 
 
 @bp.route('/oauth/token', methods=['POST'])
