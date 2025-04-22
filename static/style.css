@@ -1,0 +1,98 @@
+/* ---------- Layout reset & centering ---------- */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Lato', Arial, sans-serif;
+  background-color: #cbccd1;
+  color: #343a40;
+
+  /* Center everything and prevent scroll on normal screens */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Wrapper that takes the whole viewport and centers children */
+.viewport-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ---------- Card ---------- */
+.header-card {
+  background: #e9ecef;
+  padding: 4rem;
+  border-radius: 8px;
+  text-align: center;
+  width: 95%;
+  max-width: 800px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* ---------- Illustration ---------- */
+.hero-img {
+  max-width: 65%;
+  height: auto;
+  margin: 1rem auto 1.5rem;
+}
+
+/* ---------- Form ---------- */
+.login-form            { max-width: 400px; margin: 0 auto; }
+.input-group           { margin-bottom: 1rem; }
+.login-form input      {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.login-form button     {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  background: #343a40;
+  color: #fff;
+  cursor: pointer;
+}
+.login-form button:hover { opacity: 0.9; }
+
+/* ---------- Footer ---------- */
+.page-footer {
+  text-align: center;
+  font-size: 0.85rem;
+  padding: 0.5rem 0;
+}
+
+/* ---------- Extreme small–height safeguard ---------- */
+@media (max-height: 500px) {
+  .hero-img   { max-width: 45%; }
+  .header-card{ padding: 1rem; }
+}
+
+/* Optional: a consistent subtitle style */
+.subtitle {
+  font-size: 1.15rem;
+  margin-bottom: 1.25rem;
+}
+
+/* ---------- Emoji boom animation (DENY) ---------- */
+.emoji-boom {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  animation: boom 0.9s forwards ease-out;   /* was 0.45s */
+  z-index: 9999;
+}
+
+@keyframes boom {
+  to {
+    transform: translate(-50%, -50%) scale(11);
+    opacity: 0;
+  }
+}
+
+

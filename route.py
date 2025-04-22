@@ -1,7 +1,7 @@
 import time
 
 from authlib.integrations.flask_oauth2 import current_token
-from flask import Blueprint, request, redirect, jsonify
+from flask import Blueprint, request, redirect, jsonify, render_template
 from flask_login import LoginManager, login_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash, gen_salt
 
@@ -63,13 +63,7 @@ def init_data():
 def authorize():
     if request.method == 'GET':
         grant = auth_server.get_consent_grant(end_user=current_user)
-        return (f"<h1>Authorization Request</h1>"
-                f"<form method='post'> "
-                f"<img src='{grant.client.logo_uri}' width='200px' alt='Client Logo'/><br/>"
-                f"<h3>{grant.client.client_name} ({grant.client.client_id}) want to access your resources</h3>"
-                f"<button type='submit' name='approve' value='1'>Approve</button>"
-                f"<button type='submit' name='deny' value='1'>Deny</button>"
-                f"</(form>")
+        return render_template('authorize.html', client=grant.client)
     else:  # POST
         if 'approve' in request.form:
             grant_user = current_user
@@ -103,9 +97,4 @@ def login():
             login_user(user)
             return redirect(request.args.get('next') or '/')
         return 'Invalid credentials', 401
-    return (f"<h1>Login</h1>"
-            f"<form method='post'>"
-            f"<label>Email: <input type='text' name='email'></label><br>"
-            f"<label>Password: <input type='password' name='password'></label><br>"
-            f"<button type='submit'>Login</button>"
-            f"</form>")
+    return render_template('login.html')

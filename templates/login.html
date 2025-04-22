@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Log in Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- W3.CSS framework (kept for icons / helpers you may reuse) -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Custom CSS -->
+  <link href="../static/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <!-- Flex wrapper that keeps everything centered and fills the viewport -->
+  <div class="viewport-center">
+
+    <!-- Main card -->
+    <header class="header-card">
+      <h1 class="w3-margin-top">Custom Server</h1>
+
+      <img
+        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+        alt="Login illustration"
+        class="hero-img">
+
+      <p class="subtitle">Enter your credentials to sign in</p>
+
+      <form method="post" class="login-form">
+        <!-- Email -->
+        <div class="input-group">
+          <input class="w3-input" name="email" type="text" placeholder="Email" required>
+        </div>
+        <!-- Password -->
+        <div class="input-group">
+          <input class="w3-input" name="password" type="password" placeholder="Password" required>
+        </div>
+
+        <button type="submit"
+                name="authorize"
+                value="authorize"
+                class="w3-button w3-black w3-hover-opacity">
+          Log in
+        </button>
+      </form>
+    </header>
+
+    <!-- Tiny footer always visible under the card -->
+    <footer class="page-footer">
+      <p>Created By: Jen Celis, Joseph Foote, Clint Grano, &amp; Christian Siletti</p>
+      <p>Powered By: <a href="https://www.w3schools.com/w3css/" target="_blank">w3.css</a></p>
+    </footer>
+
+  </div>
+</body>
+</html>

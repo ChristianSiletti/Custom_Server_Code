@@ -1,0 +1,116 @@
+<!-- Neutral / Approved Smiley Face: https://thumbs.wbm.im/pw/small/8717e610cffd4d93f01211f0743bd459.png  -->
+<!-- Denied  / Cursed  Smiley Face: https://www.pngplay.com/wp-content/uploads/12/Cursed-Emoji-Transparent-Free-PNG.png -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Authorize | My OAuth App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- W3.CSS + fonts -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Shared custom styles -->
+  <link href="../static/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <div class="viewport-center">
+
+    <!-- Card -->
+    <header class="header-card">
+      <h1 class="w3-margin-top">My OAuth App</h1>
+
+      <img
+        src="https://thumbs.wbm.im/pw/small/8717e610cffd4d93f01211f0743bd459.png"
+        alt="Client Logo"
+        class="hero-img"
+        style="max-width:150px">
+
+      <p class="subtitle">Authorization Request</p>
+
+      <h3>
+        {{ client.client_name }} ({{ client.client_id }}) requests access to your resources.
+      </h3>
+
+      <form id="authForm" method="post" class="login-form">
+        <button type="button"
+                id="approveBtn"
+                class="w3-button w3-black w3-hover-opacity w3-block">
+          Approve
+        </button>
+
+        <div style="height:0.75rem"></div>
+
+        <button type="button"
+                id="denyBtn"
+                class="w3-button w3-black w3-hover-opacity w3-block">
+          Deny
+        </button>
+      </form>
+    </header>
+
+    <footer class="page-footer">
+      <p>Created By: Jen Celis, Joseph Foote, Clint Grano, &amp; Christian Siletti</p>
+      <p>Powered By: <a href="https://www.w3schools.com/w3css/" target="_blank">w3.css</a></p>
+    </footer>
+
+  </div>
+
+  <!-- Flash / Boom logic -->
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form       = document.getElementById('authForm');
+    const approveBtn = document.getElementById('approveBtn');
+    const denyBtn    = document.getElementById('denyBtn');
+    const heroImg    = document.querySelector('.hero-img');
+
+    // Helper – inject hidden field then submit
+    function submitAfter(action, delay) {
+      const hidden = document.createElement('input');
+      hidden.type  = 'hidden';
+      hidden.name  = action;
+      hidden.value = '1';
+      form.appendChild(hidden);
+      setTimeout(() => form.submit(), delay);
+    }
+
+    // Play A Sound
+    function playSfx(url, volume = 1) {
+      const snd = new Audio(url);
+      snd.crossOrigin = 'anonymous';
+      snd.volume = volume;
+      snd.play().catch(err => console.warn('⚠️  Audio play failed:', err));
+    }
+
+    // ----- APPROVE -----
+    approveBtn.addEventListener('click', () => {
+      document.body.style.transition = 'background 0.4s';
+      document.body.style.background = '#28a745';
+
+      playSfx('/static/sounds/success.mp3');   // 👈 approved / successful chime here
+
+      submitAfter('approve', 900);
+    });
+
+    // ----- DENY -----
+    denyBtn.addEventListener('click', () => {
+      document.body.style.transition = 'background 0.3s';
+      document.body.style.background = '#dc3545';
+
+      heroImg.src = 'https://www.pngplay.com/wp-content/uploads/12/Cursed-Emoji-Transparent-Free-PNG.png';
+      heroImg.classList.add('emoji-boom');
+
+      playSfx('/static/sounds/deny.ogg', 0.9); // 👈 buzzer / jump‑scare clip here
+
+
+      submitAfter('deny', 1400);
+    });
+  });
+</script>
+
+</body>
+</html>
